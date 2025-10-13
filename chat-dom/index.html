@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wdith, initial-scale=1.0">
+    <title>Chat Assistant - DOM Manipula</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--Main chat container-->
+    <main class="chat-container">
+        <header class="chat-header">
+            <h1>Chat Assistant</h1>
+            <p class="subtitle">Approach 1: DOM Manipulation</p>
+        </header>
+
+        <!-- Mesages container - starts empty, populated by JS -->
+         <div class="messages-container" id="messagesContainer">
+
+         </div>
+         <!-- Input form for sending messages-->
+          <form class="input-area" id="chatForm">
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="off">
+            <button type="submit">Send</button>
+          </form>
+    </main>
+
+    <!-- Import eliza module for bot responses-->
+     <script type="module" src="eliza.js"></script>
+     <script type="module" src="script.js"></script>
+</body>
+</html>
