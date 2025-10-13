@@ -5,10 +5,10 @@
     box-sizing: border-box;
 }
 
-/* Body styling with gradient background and centerd content*/
+/* Body styling with gradient background and centered content*/
 body {
     font-family: sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100% );
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@ body {
     max-width: 600px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 10px 40px #00000033;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     height: 700px;
@@ -32,14 +32,15 @@ body {
 /* Header section with gradient background*/
 .chat-header {
     background: linear-gradient(13deg, #5fa3d0 0%, #4a90e2 100%);
-    color:white;
+    color: white;
     padding: 24px;
     text-align: center;
 }
 
-.chat-header1 {
+.chat-header h1 {
     font-size: 28px;
     margin-bottom: 8px;
+    font-family: sans-serif;
 }
 
 .subtitle {
@@ -61,7 +62,8 @@ body {
     display: flex;
     margin-bottom: 4px;
 }
- /* Bot messages aligned to the left */
+
+/* Bot messages aligned to the left */
 .message.bot {
     justify-content: flex-start;
 }
@@ -88,7 +90,85 @@ body {
 .message.user .message-content {
     background: #4a90e2;
     color: white;
-    border-bottom-right-radius: 4px; /* Chat bubble tail effec*/
+    border-bottom-right-radius: 4px; /* Chat bubble tail effect*/
 }
 
-/* Input area at bottomof chat*/
+/* Input area at bottom of chat*/
+.input-area {
+    display: flex;
+    padding: 16px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    gap: 12px;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-area input:focus {
+    border-color: #4a90e2;
+}
+
+.input-area input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Send button styling*/
+.input-area button {
+    padding: 12px 24px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/*Button hover state*/
+.input-area button:hover:not(:disabled) {
+    background: #357abd;
+}
+
+/* Disabled button styling*/
+.input-area button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/*Information notice at bottom*/
+.notice {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #ffeeba;
+}
+
+/*Custom scrollbar styling for webkit browsers*/
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
