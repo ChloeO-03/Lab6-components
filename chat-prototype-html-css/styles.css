@@ -1,0 +1,59 @@
+/* Reset default browser styles*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling with gradient background and centerd content*/
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100% );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main chat container - white box with shadow*/
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px #00000033;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    overflow: hidden;
+}
+
+/* Header section with gradient background*/
+.chat-header {
+    background: linear-gradient(13deg, #5fa3d0 0%, #4a90e2 100%);
+    color:white;
+    padding: 24px;
+    text-align: center;
+}
+
+.chat-header1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.messages-container {
+    flex: 1; /* takes up remaining space */
+    padding: 20px;
+    overflow-y: auto;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Space between messages*/
+}
+
