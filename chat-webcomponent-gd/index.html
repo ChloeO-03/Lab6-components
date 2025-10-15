@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chat Assistant - Web Component</title>
+    <style>
+        :root{
+            --chat-primary-color: #4a90e2;
+            --chat-primary-dark: #357abd;
+            --chat-bot-bg: #e9ecef;
+            --chat-user-bg: #4a90e2;
+            --chat-bg: #f5f5f5;
+            --chat-border: #e0e0e0;
+
+        }
+        /* Reset browser defaults */
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Page background and centering */
+
+        body {
+            font:sans-serif ;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+
+        }
+
+        /* Cotainer for the custom element*/
+        main {
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+<body>
+    <main>
+        <!--
+        Custom Web Component with Shadow DOM
+        -->
+        <chat-interface></chat-interface>
+    </main>
+    <script type="module", src="eliza.js"></script>
+    <script type="module", src="chat-component.js"></script>
+</body>
+</html>
+
