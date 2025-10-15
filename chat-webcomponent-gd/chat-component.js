@@ -1,8 +1,8 @@
 /**
- * ChatInferface Web Component with Shadow DOM
+ * ChatInterface Web Component with Shadow DOM
  * 
- * This componenet demonstrates full encapsulation using Shadow DOM
- * Key Characteristics:
+ * This component demonstrates full encapsulation using Shadow DOM.
+ * Key characteristics:
  * - Uses Shadow DOM for complete style and markup isolation
  * - All HTML structure is generated via JavaScript
  * - Styles are encapsulated and don't leak out
@@ -10,47 +10,53 @@
  * - Component is completely self-contained and reusable
  */
 
-import { elizaResponse} from './eliza.js';
+import { elizaResponse } from './eliza.js';
 
 /**
  * ChatInterface custom element class
  * Extends HTMLElement to create a fully encapsulated web component
  */
-
-class ChatInferface extends HTMLElement {
+class ChatInterface extends HTMLElement {
+/**
+* Constructor - called when element is created
+* Attaches Shadow DOM for encapsulation
+*/
     constructor() {
         super();
-
+        
+        // Debug flag for development logging
         this.debug = false;
-
-        this.attachShadow({mode: 'open'})
+        
+        // Attach Shadow DOM with 'open' mode
+        // 'open' mode allows external JavaScript to access shadowRoot if needed
+        this.attachShadow({ mode: 'open' });
     }
-}
+    
+    /**
+     * connectedCallback - lifecycle method
+     * Called when element is added to the DOM
+     * This is where we create the component's structure
+     */
+    connectedCallback() {
+        this.log('ChatInterface component connected');
+        
+        // Render the component's HTML and CSS
+        this.render();
+        
+        // Set up event listeners after rendering
+        this.setupEventListeners();
+        
+        // Add initial greeting after a brief delay
+        setTimeout(() => {
+            this.addMessage("Hello! I'm here to chat with you. How can I help you today?", false);
+        }, 100);
+    }
 
 /**
- * connectedCallback - lifecycle method
- * Called when element is added to the DOM
- * This is where we create the component's structure
- */
-
-connectedCallback() {
-    this.log('ChatInferface component connected');
-
-    this.render();
-
-    this.setupEventListerners();
-    setTimeout (() => {
-        this.addMessage ("Hello! I'm here to chat with you. How can I help you today?", false);
-
-    }, 100);
-}
-
- /**
 * Renders the complete component structure within Shadow DOM
 * Creates all HTML elements and embedded styles
 */
-
- render() {
+    render() {
         // Set innerHTML of shadowRoot to create the component's structure
         // Template literal allows us to write HTML/CSS as a string
         this.shadowRoot.innerHTML = `
@@ -243,6 +249,112 @@ connectedCallback() {
             </div>
         `;
     }
+    
+/**
+* Sets up event listeners for the chat interface
+* Must use shadowRoot to query elements within Shadow DOM
+*/
+    setupEventListeners() {
+        this.log('Setting up event listeners');
+        
+        // Query elements within Shadow DOM using shadowRoot
+        const form = this.shadowRoot.querySelector('.input-area');
+        const input = this.shadowRoot.querySelector('.input-area input');
+        
+        // Validate that elements were found
+        if (!form || !input) {
+            console.error('Could not find form or input in Shadow DOM');
+            return;
+        }
+        
+        // Store references for use in other methods
+        this.form = form;
+        this.input = input;
+        this.messagesContainer = this.shadowRoot.querySelector('.messages-container');
+        
+        // Handle form submission
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleSubmit();
+        });
+        
+        // Focus on input field
+        this.input.focus();
+    }
+    
+/**
+* Handles form submission when user sends a message
+* Gets input, validates, adds to chat, and generates response
+*/
+    handleSubmit() {
+        // Get trimmed message text
+        const message = this.input.value.trim();
+        
+        // Ignore empty messages
+        if (message === '') {
+            return;
+        }
+        
+        this.log(`Sending message: ${message}`);
+        
+        // Add user message to chat
+        this.addMessage(message, true);
+        
+        // Clear input field
+        this.input.value = '';
+        
+        // Return focus to input
+        this.input.focus();
+        
+        // Get bot response and add after delay for natural feel
+        setTimeout(() => {
+            const response = elizaResponse(message);
+            this.addMessage(response, false);
+        }, 500);
+    }
+    
+/**
+* Adds a new message to the chat
+* Creates DOM elements within the Shadow DOM 
+* @param {string} text - The message text to display
+* @param {boolean} isUser - True if message is from user, false if from bot
+*/
 
+    addMessage(text,user) {
+        this.log(`Adding message: ${text}, isUser: ${isUser}`);
 
+        // Create message wrapper div
+        messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
 
+        // Create message content div
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = text;
+
+        // Append content to message wrapper
+        messageDiv.appendChild(contentDiv);
+
+        this.messagesContainer.appendChild(messageDiv);
+
+        this.messagesContainer.appendChild(messageDiv);
+
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+
+    }
+/**
+* Logs debug messages if debug mode is enabled
+* Helps with development and troubleshooting
+* 
+* @param {string} msg - The message to log
+*/
+
+    log(msg) {
+        if(this.debug) {
+            console.log(`[ChatInterface] ${msg}`);
+        }
+    }
+   
+}
+
+customElements.define('chat-interface', ChatInterface);
