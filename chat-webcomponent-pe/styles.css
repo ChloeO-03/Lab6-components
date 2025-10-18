@@ -1,22 +1,13 @@
-/**
- * Global Stylesheet for Progressive Enhancement Web Component
- * 
- * Since this approach does NOT use Shadow DOM, these styles are global
- * and will style the content inside the <simple-chat> element.
- * 
- * This is different from the Shadow DOM approach where styles are encapsulated.
- */
-
-
 /* Reset browser defaults */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-/* Page background and centering*/
+
+/* Page background and centering */
 body {
-    font: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     justify-content: center;
@@ -25,48 +16,47 @@ body {
     padding: 20px;
 }
 
-/* Container for the custom element*/
+/* Container for the custom element */
 .page-container {
     width: 100%;
     max-width: 600px;
 }
 
 /* 
- * Styling for the custom element itself
+ * Styling for the custom element
  * Since this doesn't use Shadow DOM, we style it directly with global CSS
- * The element behaves like a standard HTML element
  */
-
- simple-chat {
+simple-chat {
     display: block;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     height: 700px;
     display: flex;
     flex-direction: column;
- }
+}
 
- /* Header section with gradient background */
- .chat-header {
+/* Header styling */
+.chat-header {
     background: linear-gradient(135deg, #5fa3d0 0%, #4a90e2 100%);
     color: white;
     padding: 24px;
     text-align: center;
- }
+}
 
- .chat-header h1 {
+.chat-header h1 {
     font-size: 28px;
     margin-bottom: 8px;
- }
- .subtitle {
+}
+
+.subtitle {
     font-size: 14px;
     opacity: 0.9;
- }
+}
 
- /* Scrollable messages container*/
- .messages-container {
+/* Messages container */
+.messages-container {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
@@ -74,14 +64,15 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
- }
+}
 
+/* Message wrapper with animation */
 .message {
     display: flex;
     animation: fadeIn 0.3s ease-in;
 }
 
-/* Fade-in animation for new messages */
+/* Fade-in animation for messages */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -93,37 +84,40 @@ body {
     }
 }
 
-/* Bot messages align to the left*/
+/* Bot messages align left */
 .message.bot {
     justify-content: flex-start;
 }
 
+/* User messages align right */
 .message.user {
     justify-content: flex-end;
 }
 
+/* Message bubble content */
 .message-content {
     max-width: 70%;
     padding: 12px 16px;
     border-radius: 18px;
     line-height: 1.4;
-    word-wrap: break-word; /* Wraps long words */
+    word-wrap: break-word;
 }
 
-/* Bot message bubble styling - gray background */
+/* Bot message bubble styling */
 .message.bot .message-content {
     background: #e9ecef;
     color: #333;
     border-bottom-left-radius: 4px;
 }
 
-/* User message bubble styling - blue background */
+/* User message bubble styling */
 .message.user .message-content {
     background: #4a90e2;
     color: white;
     border-bottom-right-radius: 4px;
 }
 
+/* Input area */
 .input-area {
     display: flex;
     padding: 16px;
@@ -132,6 +126,7 @@ body {
     gap: 12px;
 }
 
+/* Input field */
 .input-area input {
     flex: 1;
     padding: 12px 16px;
@@ -141,11 +136,13 @@ body {
     outline: none;
     transition: border-color 0.3s;
 }
-/* Input field focus state*/
+
+/* Input focus state */
 .input-area input:focus {
     border-color: #4a90e2;
 }
 
+/* Send button */
 .input-area button {
     padding: 12px 24px;
     background: #4a90e2;
@@ -155,20 +152,26 @@ body {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s, transform 0.1s;
+    transition: background 0.3s;
 }
 
-/* Button hover effect */
+/* Button hover state */
 .input-area button:hover {
     background: #357abd;
 }
 
+/* Button active state */
 .input-area button:active {
     transform: scale(0.98);
 }
 
-.messages-container ::-webkit-scrollbar {
+/* Custom scrollbar styling */
+.messages-container::-webkit-scrollbar {
     width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
 .messages-container::-webkit-scrollbar-thumb {
@@ -176,7 +179,7 @@ body {
     border-radius: 4px;
 }
 
-.messages-container::-webkit-scrollbar-thumber:hover{
+.messages-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
