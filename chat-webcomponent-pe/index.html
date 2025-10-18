@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Assistant - Progressive Enhancement</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Assistant - PE</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main class="page-container">
-       <!-- 
-            Custom element: simple-chat
-            Progressive Enhancement approach:
-            - Starts with semantic HTML inside the custom element
-            - JavaScript enhances the existing markup with interactivity
-            - Content is visible and accessible even if JavaScript fails to load
-            - Does NOT use Shadow DOM - relies on global styles
-            - This approach prioritizes accessibility and graceful degradation
-        --> 
-            <simple-chat>
-                <header class="chat-header">
-                    <h1>Chat Assistant</h1>
-                    <p class="subtitle"> Approach 2: Progressive Enhancement</p>
-                </header>
+  <main class="page-container">
+    <simple-chat>
+      <header class="chat-header">
+        <h1>Chat Assistant</h1>
+        <p class="subtitle">Approach 2: Progressive Enhancement</p>
+      </header>
 
-                <!-- Messages container with initial bot greeting already in HTML-->
-                 <div class="messages-container">
-                    <div class="message bot">
-                        <div class="message-content">
-                            Hello! I'm here to chat with you. How can I help you today?
-                        </div>
-                    </div>
-                 </div>
+      <div class="messages-container">
+        <div class="message bot">
+          <div class="message-content">
+            Hello! I'm here to chat with you. How can I help you today?
+          </div>
+        </div>
+      </div>
 
-                 <!-- Input form is functional HTML that will be enhanced by JS-->
-                <form class="input-area">
-                    <input type="text" placeholder="Type a message..." autocomplete="off">
-                    <button type="submit">Send</button>
-                </form>
-            </simple-chat>
-    </main>
-    <script type="module" src="eliza.js"></script>
-    <script type="module" src="chat-component.js"></script>
+      <form class="input-area">
+        <input type="text" placeholder="Type a message..." autocomplete="off">
+        <button type="submit">Send</button>
+      </form>
+    </simple-chat>
+  </main>
 
+  <script type="module" src="eliza.js"></script>
+  <script type="module" src="chat-component.js"></script>
 </body>
 </html>
+
+
