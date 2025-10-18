@@ -1,61 +1,59 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Chat Assistant - HTML/CC Prototype</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chat Assistant - HTML/CSS Prototype</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!--Main chat container-->
     <main class="chat-container">
         <header class="chat-header">
             <h1>Chat Assistant</h1>
-            <p class = "subtitle" > Prototype: Pure HTML/CSS (Static)</p>
+            <p class="subtitle"><strong>Prototype:</strong> Pure HTML/CSS (Static)</p>
         </header>
+
         <!--Messages display area with pre-written conversation-->
-        <div class ="messages-container">
-            <div class="message bot">
+        <div class="messages-container">
+            <!--Bot message-->
+            <div class="message bot-message">
                 <div class="message-content">
-                    Hello! I'm here to chat with you. How can I help you today?
+                    <div class="message-text">Hello! I'm here to chat with you. How can I help you today?</div>
                 </div>
             </div>
-            <!--User message - aligned right with blue background-->
-            <div class="message user">
-                <div class = "message-content">
-                    Hi there! What can you do?
+            
+            <!--User message-->
+            <div class="message user-message">
+                <div class="message-content">
+                    <div class="message-text">Hi there! What can you do?</div>
                 </div>
             </div>
 
             <!--Bot response-->
-            <div class="message bot">
+            <div class="message bot-message">
                 <div class="message-content">
-                    I can chat with you about various topics. Try asking me a question or just say hello!
+                    <div class="message-text">I can chat with you about various topics. Try asking me a question or just say hello!</div>
                 </div>
             </div>
-            <!-- User question-->
-             <div class="message user">
+            
+            <!--User question-->
+            <div class="message user-message">
                 <div class="message-content">
-                    How does this work?
+                    <div class="message-text">How does this work?</div>
                 </div>
-             </div>
-             <!--Bot explanation-->
-             <div class="message bot">
-                <div class="message-content">
-                    This is a static HTML/CSS demonstration. The input is disabled. See other approaches for interactive versions.
-                </div>
-             </div>
-             
+            </div>
         </div>
-        <!--Input area - disabled since this is a static prototype-->
-        <form class="input-area">
-            <input type="text" placeholder="Type a message..." disabled>
-            <button type="submit" disabled>Send</button>
-        </form>
 
-        <div class="notice">
-             ℹ️ This is a static HTML/CSS demonstration. The input is disabled. See other approaches for interactive versions.
+        <!--Input area - disabled since this is a static prototype-->
+        <div class="input-container">
+            <input type="text" placeholder="Type a message..." disabled>
+            <button type="button" disabled>Send</button>
         </div>
+
+        <footer class="chat-footer">
+            <p>This is a static HTML/CSS demonstration. The input is disabled. See other approaches for interactive versions.</p>
+        </footer>
     </main>
 </body>
 </html>
