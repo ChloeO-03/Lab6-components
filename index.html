@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6 - Component Approaches</title>
+    <style>
+        /* Reset default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Body styling with gradient background matching the image */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #6b73e3 0%, #7c6fd6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        /* Main container - white card */
+        main {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        /* Header section */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Main heading */
+        h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        /* Subtitle */
+        .subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        /* Grid layout for approach cards */
+        .approaches-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        /* Individual approach card */
+        .approach-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 32px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        
+        /* Card hover effect */
+        .approach-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Badge styling */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        /* Prototype badge - gray */
+        .badge.prototype {
+            background: #718096;
+            color: white;
+        }
+        
+        /* Approach badges - red */
+        .badge.approach1,
+        .badge.approach2,
+        .badge.approach3 {
+            background: #e53e3e;
+            color: white;
+        }
+        
+        /* Card heading */
+        .approach-card h2 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        /* Card description */
+        .approach-card p {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            min-height: 50px;
+        }
+        
+        /* Features list */
+        .features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        /* Individual feature item */
+        .features li {
+            color: #4a5568;
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        /* Green checkmark before each feature */
+        .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Demo link styling */
+        .demo-link {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        
+        /* Arrow after link text */
+        .demo-link::after {
+            content: "→";
+            font-size: 1.2rem;
+        }
+        
+        /* Link hover effect */
+        .demo-link:hover {
+            color: #2c5282;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            main {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .approaches-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Page header -->
+        <header>
+            <h1>Chat Component</h1>
+            <p class="subtitle">Prototype + Three Approaches to Component-Based Thinking</p>
+        </header>
+        
+        <!-- Grid of approach cards -->
+        <div class="approaches-grid">
+            <!-- Prototype Card -->
+            <article class="approach-card">
+                <span class="badge prototype">Prototype</span>
+                <h2>Pure HTML & CSS</h2>
+                <p>A static mockup using only HTML and CSS to work out the interface design.</p>
+                <ul class="features">
+                    <li>No dependencies</li>
+                    <li>Always accessible</li>
+                    <li>Simple to understand</li>
+                    <li>No interactivity</li>
+                </ul>
+                <a href="chat-prototype-html-css/" class="demo-link">View Demo</a>
+            </article>
+            
+            <!-- Approach 1 Card -->
+            <article class="approach-card">
+                <span class="badge approach1">Approach 1</span>
+                <h2>DOM Manipulation</h2>
+                <p>Interactive chat using vanilla JavaScript and standard DOM methods.</p>
+                <ul class="features">
+                    <li>Full interactivity</li>
+                    <li>Eliza-style bot</li>
+                    <li>Standard JavaScript</li>
+                    <li>No encapsulation</li>
+                </ul>
+                <a href="chat-dom/" class="demo-link">View Demo</a>
+            </article>
+            
+            <!-- Approach 2 Card -->
+            <article class="approach-card">
+                <span class="badge approach2">Approach 2</span>
+                <h2>Progressive Enhancement</h2>
+                <p>Custom element that enhances existing HTML markup with JavaScript.</p>
+                <ul class="features">
+                    <li>Graceful degradation</li>
+                    <li>Semantic base HTML</li>
+                    <li>Web Components API</li>
+                    <li>Global styles</li>
+                </ul>
+                <a href="chat-webcomponent-pe/" class="demo-link">View Demo</a>
+            </article>
+            
+            <!-- Approach 3 Card -->
+            <article class="approach-card">
+                <span class="badge approach3">Approach 3</span>
+                <h2>Web Component</h2>
+                <p>Fully encapsulated custom element with Shadow DOM and internal styles.</p>
+                <ul class="features">
+                    <li>Complete encapsulation</li>
+                    <li>Shadow DOM</li>
+                    <li>Self-contained</li>
+                    <li>Highly reusable</li>
+                </ul>
+                <a href="chat-webcomponent-gd/" class="demo-link">View Demo</a>
+            </article>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>COMP 305 Fall 2025 - Prof Powell</p>
+        </footer>
+    </main>
+</body>
+</html>
