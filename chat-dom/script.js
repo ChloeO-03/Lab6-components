@@ -1,127 +1,122 @@
 /**
  * Chat Application - DOM Manipulation Approach
- * This file handles all the interactive functionality using JavaScript
- * and standard DOM Manipulation
+ * Handles chat functionality using vanilla JavaScript and DOM manipulation
  */
 
-import { elizaResponse} from './eliza.js';
+import { getBotResponse } from './eliza.js';
 
-// Debug flag for development loggin
-const DEBUG = false;
+// Debug flag for development logging
+const DEBUG = true;
 
 /**
  * Logs debug messages to console if DEBUG mode is enabled
- * @param{string} msg - The message to log
+ * @param {string} msg - The message to log
  */
-
 function log(msg) {
-    if(DEBUG) {
+    if (DEBUG) {
         console.log(msg);
     }
 }
 
-// Get references to DOM elements that we will manipulate
+// Get references to DOM elements
 const messagesContainer = document.getElementById('messagesContainer');
 const messageInput = document.getElementById('messageInput');
 const chatForm = document.getElementById('chatForm');
 
 /**
  * Adds a new message to the chat window
- * Creates DOM elements dynamically and appends them to the messages container
- * @param{string} text - the message text to display
- * @param{boolean} isUser - True is message is from user, false if from bot
+ * @param {string} text - Message text
+ * @param {boolean} isUser - True if message is from user, false if from bot
  */
-
-function addMessage(text,isUser) {
+function addMessage(text, isUser) {
     log(`Adding message: ${text}, isUser: ${isUser}`);
 
-    //Create outer message wrapper div
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
 
-    //Create inner content div for the message text
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
     contentDiv.textContent = text;
 
-    //Append content to message wrapper
     messageDiv.appendChild(contentDiv);
-
-    //Add the complete message to the messages container
     messagesContainer.appendChild(messageDiv);
 
-    //Auto-scroll to bottom to show the latest message
-    messagesContainer.scrollTop = messagesContainer.scrollHeight
+    // Auto-scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-
 /**
- * Processes a user message and generates a bot response
- * Adds both messages to the chat with appropriate timing
- * @param{string} message - The user's message text
+ * Processes user message and generates bot response
+ * @param {string} message - User message text
  */
-
 function processMessage(message) {
     log(`Processing message: ${message}`);
 
-    //Add user's message to chat immediately
-    addMessage(message,true);
+    // Add user's message immediately
+    addMessage(message, true);
 
-    //Get response from bot using eliza pattern matching
-    const response = elizaResponse(message);
+    // Get bot response
+    const response = getBotResponse(message);
+    log(`Bot response: ${response}`);
 
-    //Add bot response after a short delay to feel more natural
-    setTimeout(() => {
-        addMessage(response,false);
-    }, 500);
+    // Delay bot reply for realism
+    setTimeout(() => addMessage(response, false), 500);
 }
 
 /**
  * Handles form submission when user sends a message
- * Prevents default frm behavior, validates input, and processes message
- * @param{Event} e - The form submission event
+ * @param {Event} e - Form submission event
  */
-
 function handleSubmit(e) {
-    //Prevent page reload on form submit
     e.preventDefault();
-
-    //Get trimmed message text
-    const message = messageInput.ariaValueMax.trim();
-
-    //Don't process empty messages
-    if (messages==='') {
+    log('Form submitted');
+    
+    const message = messageInput.value.trim();
+    log(`Message value: "${message}"`);
+    
+    if (message === '') {
+        log('Empty message, returning');
         return;
     }
 
-    log(`Sending message: ${message}`);
-
-    //Process the message (add to chat and get response)
     processMessage(message);
 
-    //Clear the input field
-    messageInput.value='';
-
-    //Return focus to input for next message
+    messageInput.value = '';
     messageInput.focus();
 }
 
 /**
- * Initializes the chat application
- * Sets up event listeners and adds initial bot greeting
+ * Initializes chat app
  */
-
 function init() {
     log('Initializing chat application');
-
-    //Add initial bot greeting message
+    
+    // Check if elements exist
+    if (!messagesContainer) {
+        console.error('messagesContainer not found!');
+        return;
+    }
+    if (!chatForm) {
+        console.error('chatForm not found!');
+        return;
+    }
+    if (!messageInput) {
+        console.error('messageInput not found!');
+        return;
+    }
+    
+    log('All DOM elements found');
+    
+    // Add initial bot message
     addMessage("Hello! I'm here to chat with you. How can I help you today?", false);
-
-    //Set up form submission handler
+    
+    // Add event listener for form submission
     chatForm.addEventListener('submit', handleSubmit);
-
+    log('Event listener attached');
+    
     messageInput.focus();
 }
 
-//Initialize the application when DOM is fully loaded
-window.addEventListener('DOMContentLoaded', init);
+// Initialize when DOM is ready
+// Note: type="module" scripts are deferred by default, so DOM is already loaded
+init();
