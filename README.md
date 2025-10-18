@@ -7,11 +7,7 @@ COMP 305 Fall 2025
 This project explores component-based architecture by building the same chat interface using four different approaches: a static HTML/CSS prototype, DOM manipulation with vanilla JavaScript, progressive enhancement with Web Components, and a fully encapsulated Web Component with Shadow DOM. The purpose is to understand the trade-offs between different architectural patterns and learn when to use each approach.
 
 ## Live Demos
-- [Main Index]()
-- [Prototype: Pure HTML/CSS]()
-- [Approach 1: DOM Manipulation]()
-- [Approach 2: Progressive Enhancement]()
-- [Approach 3: Web Component (Shadow DOM)]()
+- [Main Index](https://chloeo-03.github.io/Lab6-components/)
 
 ## Technologies Used
 - HTML5
